@@ -1,0 +1,45 @@
+INFO:root:Request URL: http://localhost/objects
+INFO:root:Request method: POST
+INFO:root:Request data: b'{"email": "test@example.com", "name": "Test User", "phone": "12345678"}'
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: DELETE
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: GET
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects
+INFO:root:Request method: POST
+INFO:root:Request data: b'{"email": "test@example.com", "name": "Test User", "phone": "12345678"}'
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: DELETE
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: GET
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects
+INFO:root:Request method: POST
+INFO:root:Request data: b'{"email": "test@example.com", "name": "Test User", "phone": "12345678"}'
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: DELETE
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: GET
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects
+INFO:root:Request method: POST
+INFO:root:Request data: b'{"email": "test@example.com", "name": "Test User", "phone": "12345678"}'
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: DELETE
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: GET
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects
+INFO:root:Request method: POST
+INFO:root:Request data: b'{"email": "test@example.com", "name": "Test User", "phone": "12345678"}'
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: DELETE
+INFO:root:Request data: b''
+INFO:root:Request URL: http://localhost/objects/1
+INFO:root:Request method: GET
+INFO:root:Request data: b''
