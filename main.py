@@ -96,3 +96,5 @@ if __name__ == '__main__':
         {"id": 1, "name": "Ben", "email": "ben@email.com", "phone": "11111111"},
     ]
     unittest.main()
+
+app.run(host='0.0.0.0')
