@@ -24,6 +24,7 @@ def log_request_info():
 # Service class for handling object operations
 class ObjectService:
     def get_object_by_id(self, object_id):
+        print("\nObject after get_object; ", next((obj for obj in objects if obj['id'] == object_id), None)) # Print objects after getting 
         return next((obj for obj in objects if obj['id'] == object_id), None)
 
     def add_object(self, data):
@@ -35,10 +36,12 @@ class ObjectService:
             'phone': data['phone']
         }
         objects.append(new_object)
+        print("\nObjects after add_object:", objects)  # Print object list after adding
         return new_object
 
     def delete_object(self, object_id):
         objects[:] = [obj for obj in objects if obj['id'] != object_id]
+        print("\nObjects after delete_object:", objects)  # Print object list after deleting
 
 object_service = ObjectService()
 
