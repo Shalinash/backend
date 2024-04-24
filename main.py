@@ -21,15 +21,26 @@ def log_request_info():
     logging.info('Request method: %s', request.method)
     logging.info('Request data: %s', request.data)
 
-# Validate request data for adding an object
-def validate_add_object(data):
-    if 'name' not in data or 'email' not in data or 'phone' not in data:
-        return False
-    return True
+# Service class for handling object operations
+class ObjectService:
+    def get_object_by_id(self, object_id):
+        return next((obj for obj in objects if obj['id'] == object_id), None)
 
-# Validate request data for deleting an object
-def validate_delete_object(objects, id):
-    return any(obj['id'] == id for obj in objects)
+    def add_object(self, data):
+        max_id = max(obj['id'] for obj in objects) if objects else -1
+        new_object = {
+            'id': max_id + 1,
+            'name': data['name'],
+            'email': data['email'],
+            'phone': data['phone']
+        }
+        objects.append(new_object)
+        return new_object
+
+    def delete_object(self, object_id):
+        objects[:] = [obj for obj in objects if obj['id'] != object_id]
+
+object_service = ObjectService()
 
 # Endpoint to get list of all objects
 @app.route('/objects', methods=['GET'])
@@ -37,11 +48,10 @@ def get_all_objects():
     return jsonify(objects)
 
 # Endpoint to get an object by ID
-@app.route('/objects/<id>', methods=['GET'])
-def get_object(id):
-    obj = next((obj for obj in objects if obj['id'] == int(id)), None)
+@app.route('/objects/<int:object_id>', methods=['GET'])
+def get_object(object_id):
+    obj = object_service.get_object_by_id(object_id)
     if obj:
-        print("\nObjects after get_object:", objects)  # Print object list
         return jsonify(obj)
     return jsonify({'error': 'Object not found'}), 404
 
@@ -49,27 +59,13 @@ def get_object(id):
 @app.route('/objects', methods=['POST'])
 def add_object():
     data = request.json
-    if not validate_add_object(data):
-        return jsonify({'error': 'Invalid request data'}), 400
-
-    max_id = max(obj['id'] for obj in objects) if objects else -1
-    new_object = {
-        'id': max_id + 1,
-        'name': data['name'],
-        'email': data['email'],
-        'phone': data['phone']
-    }
-    objects.append(new_object)
-    print("\nObjects after add_object:", objects)  # Print object list
+    new_object = object_service.add_object(data)
     return jsonify(new_object), 201
 
 # Endpoint to delete an object
-@app.route('/objects/<int:id>', methods=['DELETE'])
-def delete_object(id):
-    if not validate_delete_object(objects, id):
-        return jsonify({'error': 'Object not found'}), 404
-    objects[:] = [obj for obj in objects if obj['id'] != id]
-    print("\nObjects after delete_object:", objects)  # Print object list
+@app.route('/objects/<int:object_id>', methods=['DELETE'])
+def delete_object(object_id):
+    object_service.delete_object(object_id)
     return jsonify({'message': 'Object deleted successfully'})
 
 
